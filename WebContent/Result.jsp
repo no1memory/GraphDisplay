@@ -5,14 +5,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="layout.css">
-<title>データ入力</title>
+<title>結果表示</title>
 </head>
 <body>
-<h2>データ作成＆分布確認</h2>
-<form action="/graphDisplay/MakeDataServlet">
-	データ個数を入力してください
-	<input type="text" name="dataNum" >
-	<input type="submit" value="送信">
-</form>
+<h2>データ分布</h2>
+<img alt="データ分布" src="/graphDisplay/GraphDispServlet">
+<br>
+<INPUT type="button" value="戻る" onClick="history.back()">
 </body>
 </html>

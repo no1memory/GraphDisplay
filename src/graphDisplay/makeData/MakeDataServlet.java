@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class MakeDataServlet
@@ -21,7 +22,6 @@ public class MakeDataServlet extends HttpServlet {
      */
     public MakeDataServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -35,28 +35,18 @@ public class MakeDataServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
-		String dataOutput = "";
-		StringBuffer sb = new StringBuffer();
 		int dataNum = 0;
-
+		
 		request.setCharacterEncoding("Shift_JIS");
 		response.setContentType("text/html; charset=Shift_JIS");
-
 		dataNum = Integer.parseInt(request.getParameter("dataNum"));
-        
-		for (int i = 0; i < dataNum; i++) {
-			sb.append(String.valueOf((int) (Math.random() * 11)));
-			if (i != (dataNum - 1))
-				sb.append(",");
-		}
-		dataOutput = sb.toString();
+		
+		HttpSession session = request.getSession();
+		
+		session.setAttribute("dataNum", dataNum);
 
-		request.setAttribute("dataOutput", dataOutput);
-
-		RequestDispatcher rd = request.getRequestDispatcher("/makeData.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/Result.jsp");
 		rd.forward(request, response);
-        
 	}
 
 }
